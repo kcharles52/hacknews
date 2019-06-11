@@ -1,1 +1,1 @@
-## GraphQl Project
+## Hack News
