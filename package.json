@@ -1,0 +1,8 @@
+{
+  "name": "HackNews",
+  "version": "1.0.0",
+  "description": "Application fetch new and have it categories",
+  "main": "index.js",
+  "author": "charles",
+  "license": "MIT"
+}
