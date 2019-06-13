@@ -3,25 +3,34 @@ import Link from './Link'
 import { Query } from "react-apollo";
 import gql from "graphql-tag";
 
-
-class LinkList extends Component {
-
-  FEED_QUERY = gql`
-    {
-      feed {
-        links {
+const FEED_QUERY = gql`
+{
+  feed {
+    links {
+      id
+      createdAt
+      url
+      description
+      postedBy {
+        id
+        name
+      }
+      votes {
+        id
+        user {
           id
-          createdAt
-          url
-          description
         }
       }
     }
-  `
+  }
+}
+`
+class LinkList extends Component {
+
   render() {
 
     return (
-      <Query query={this.FEED_QUERY}>
+      <Query query={FEED_QUERY}>
         {({ loading, error, data }) => {
           if (loading) return <div>Fetching</div>
           if (error) return <div>Error</div>
@@ -30,7 +39,7 @@ class LinkList extends Component {
 
           return (
             <div>
-              {linksToRender.map(link => <Link key={link.id} link={link} />)}
+              {linksToRender.map((link, index) => <Link key={link.id} link={link} index={index} />)}
             </div>
           )}}
       </Query>
